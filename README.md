@@ -33,3 +33,5 @@ You can see your Resume changing.\
 At last you can Print your Resume by clicking on Download button.
 
 
+# Deployed Link
+https://648a0310d132d4096cbbf29f--timely-gelato-74025b.netlify.app/

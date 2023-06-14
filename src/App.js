@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import React, { useRef, useState } from 'react';
 import './App.css';
+import Header from './components/Header/Header';
+import Body from './components/Body/Body';
+import Resume from './components/Resume/Resume';
+import ReactToPrint from 'react-to-print';
 
 function App() {
+  const resumeRef = useRef();
+  const [resumeData, setResumeData] = useState({
+    Basic: {
+      address: "",
+      email: "",
+      jobtitle: "",
+      mobile: "",
+      name: "",
+      profile: ""
+    },
+    Experience: [],
+    Education : [],
+    Skills: []
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Body resumeData={resumeData} setResumeData={setResumeData} />
+      <Resume ref={resumeRef} resumeData={resumeData} />
+      <ReactToPrint
+          trigger={() => {
+            
+            return <button className='downloadButton'>Download</button>;
+          }}
+          content={() => resumeRef.current}
+        />
+      
     </div>
   );
 }
